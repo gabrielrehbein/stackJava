@@ -8,20 +8,36 @@ public class AnalyseSynthetic {
         this.stack = new Stack<>();
     }
 
-    private boolean check(){
-        for (char c : this.charList) {
-            if (c == '('){
-                this.stack.add(c);
+    private boolean isValidOperation(char c) {
+        for (char op : validOperations) {
+            if (op == c) {
+                return true;
             }
-            else if (c == ')'){
+        }
+        return false;
+    }
+
+    private boolean check(){
+        for (int i = 0; i < this.charList.length; i++) {
+            if (this.charList[i] == '('){
+                this.stack.add(this.charList[i]);
+            }
+            else if (this.charList[i] == ')'){
                 if (this.stack.isEmpty()){
                     return false;
                 }
                 this.stack.remove();
             }
-            else if (Character.isDigit(c)){
-                
+            else if (isValidOperation(this.charList[i]) && isValidOperation(this.charList[i + 1])){
+                return false;
             }
+            else if (Character.isDigit(this.charList[i]) && isValidOperation(this.charList[i + 1])){
+                this.stack.add(this.charList[i + 1]);
+            }
+            else if (Character.isDigit(this.charList[i]) && isValidOperation(this.charList[i -1])){
+                this.stack.remove();
+            }
+            
         }
         return this.stack.isEmpty();
         
