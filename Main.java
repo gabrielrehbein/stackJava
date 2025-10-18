@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        String syntax = "((55+31))";
+        String syntax = "(5*(4+3))";
 
         AnalyseSynthetic analyseSynthetic = new AnalyseSynthetic();
 

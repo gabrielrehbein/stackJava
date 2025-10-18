@@ -31,12 +31,17 @@ public class AnalyseSynthetic {
             else if (isValidOperation(this.charList[i]) && isValidOperation(this.charList[i + 1])){
                 return false;
             }
+            else if (isValidOperation(this.charList[i]) && i + 1 < this.charList.length && this.charList[i + 1] == '(') {
+                this.stack.remove();
+            }
+            
             else if (Character.isDigit(this.charList[i]) && isValidOperation(this.charList[i + 1])){
                 this.stack.add(this.charList[i + 1]);
             }
             else if (Character.isDigit(this.charList[i]) && isValidOperation(this.charList[i -1])){
                 this.stack.remove();
             }
+            this.stack.showAllElements();
             
         }
         return this.stack.isEmpty();
