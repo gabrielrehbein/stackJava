@@ -1,9 +1,19 @@
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        String syntax = "(5*(4+3))";
 
-        AnalyseSynthetic analyseSynthetic = new AnalyseSynthetic();
+        while (true){
 
-        analyseSynthetic.execute(syntax);
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Digite uma expressão: ");
+            String syntax = scanner.next();
+
+            AnalyseSynthetic analyseSynthetic = new AnalyseSynthetic();
+    
+            boolean isValid = analyseSynthetic.execute(syntax);
+        }
+
+
+
     }
 }

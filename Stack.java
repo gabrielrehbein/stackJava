@@ -1,5 +1,11 @@
 public class Stack<T> extends Fila<T> {
+    public T getTop(){
+        return this.getLastNode().getValue();
+    }
+
+    @Override
     public T remove(){
+        
         if (this.firstNode == null) {
             throw new IllegalStateException("Stack is empty");
         }
@@ -8,10 +14,12 @@ public class Stack<T> extends Fila<T> {
             T value = this.firstNode.getValue();
             this.firstNode = null;
             this.lastNode = null;
+            System.out.println("Removeu: " + value);
             return value;
         }
         
         T lastValue = this.getLastNode().getValue();
+        System.out.println("Removeu: " + lastValue);
 
         Node<T> tmpNode = this.getFirstNode();
 

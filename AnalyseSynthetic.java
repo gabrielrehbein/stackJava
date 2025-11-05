@@ -19,30 +19,82 @@ public class AnalyseSynthetic {
 
     private boolean check(){
         for (int i = 0; i < this.charList.length; i++) {
-            if (this.charList[i] == '('){
+            // 5+3)
+            char currentChar = this.charList[i];
+            System.out.println("Atual: "+ currentChar);
+            if (currentChar == '('){
                 this.stack.add(this.charList[i]);
             }
-            else if (this.charList[i] == ')'){
+            else if (currentChar == ')'){
                 if (this.stack.isEmpty()){
-                    return false;
+                    this.stack.add('E');
+                    break;
                 }
                 this.stack.remove();
             }
-            else if (isValidOperation(this.charList[i]) && isValidOperation(this.charList[i + 1])){
-                return false;
+
+            else if (i == 0){
+                if (this.isValidOperation(currentChar)) {
+                    this.stack.add('E');
+                    break;
+                }
+                if (Character.isDigit(currentChar)) {
+                    if (i + 1 < this.charList.length && this.isValidOperation(this.charList[i + 1])) {
+                        this.stack.add(this.charList[i + 1]);
+                    }
+                }
             }
-            else if (isValidOperation(this.charList[i]) && i + 1 < this.charList.length && this.charList[i + 1] == '(') {
-                this.stack.remove();
+
+            else if (i == this.charList.length - 1){
+                if (this.isValidOperation(currentChar)) {
+                    this.stack.add('E');
+                    break;
+                }
+                if (Character.isDigit(currentChar)) {
+                    if (isValidOperation(this.charList[i - 1])) {
+                        if (this.stack.isEmpty()){
+                            break;
+                        }
+                        this.stack.remove();
+                    }
+                }
             }
-            
-            else if (Character.isDigit(this.charList[i]) && isValidOperation(this.charList[i + 1])){
-                this.stack.add(this.charList[i + 1]);
+
+
+            else if (Character.isDigit(currentChar) && i > 0 && i < this.charList.length - 1){
+                char nextChar = this.charList[i + 1];
+                char previusChar = this.charList[i - 1];
+
+                if (this.isValidOperation(nextChar)){
+                    this.stack.add(nextChar);
+                }
+                else if (this.isValidOperation(previusChar)){
+                    if (this.stack.isEmpty()){
+                        break;
+                    }
+                    this.stack.remove();
+                }
             }
-            else if (Character.isDigit(this.charList[i]) && isValidOperation(this.charList[i -1])){
-                this.stack.remove();
+
+            else if (this.isValidOperation(currentChar) && i > 0 && i < this.charList.length - 1){
+                char nextChar = this.charList[i + 1];
+                char previusChar = this.charList[i - 1];
+
+                if (nextChar == '('){
+                    if (this.stack.isEmpty()){
+                        break;
+                    }
+                    this.stack.remove();
+                }
+                if (previusChar == '('){
+                    this.stack.add(currentChar);
+                }
             }
+
+
+            System.out.println("-------------PILHA ATUAL-------------");
             this.stack.showAllElements();
-            
+            System.out.println("-------------------------------------");
         }
         return this.stack.isEmpty();
         

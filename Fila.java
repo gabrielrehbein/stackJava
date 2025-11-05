@@ -10,6 +10,12 @@ public class Fila<T> {
         this.firstNode = newFirstNode;
     }
 
+    public T remove(){
+        Node<T> tempNode = this.firstNode;
+        this.firstNode = this.firstNode.getNextNode();
+        return tempNode.getValue();
+    }
+
     public void add(T value){
         Node<T> node = new Node<T>(value);
 
@@ -22,6 +28,7 @@ public class Fila<T> {
             tempNode.setNextNode(node);
             this.lastNode = node;
         }
+        System.out.println("Adicionou: " + value);
     }
 
     public void showAllElements(){
@@ -56,7 +63,7 @@ public class Fila<T> {
         Node<T> tempNode = this.firstNode;
         boolean contain = false;
 
-        while(tempNode.getNextNode() != null){
+        while(tempNode != null){
             if (tempNode.getValue() == value){
                 contain = true;
                 break;
