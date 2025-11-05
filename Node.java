@@ -1,6 +1,6 @@
 public class Node<T> {
-    private T value;
-    private Node<T> nextNode;
+    protected T value;
+    protected Node<T> nextNode;
 
     public Node(T value){
         this.value = value;
