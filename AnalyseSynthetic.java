@@ -19,7 +19,6 @@ public class AnalyseSynthetic {
 
     private boolean check(){
         for (int i = 0; i < this.charList.length; i++) {
-            // 5+3)
             char currentChar = this.charList[i];
             System.out.println("Atual: "+ currentChar);
             if (currentChar == '('){
@@ -101,6 +100,7 @@ public class AnalyseSynthetic {
     }
     public boolean execute(String syntax){
         syntax = syntax.replaceAll("\\s", "");
+        syntax = syntax.replaceAll(" ", "");
         this.charList = syntax.toCharArray();
         boolean isValid = this.check();
 
