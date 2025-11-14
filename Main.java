@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        int opt = 3;
+        int opt = 2;
 
         if (opt == 1){
             ListaCircular listaCircular1 = new ListaCircular<>();
