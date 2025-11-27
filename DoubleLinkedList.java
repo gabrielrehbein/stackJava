@@ -16,4 +16,40 @@ public class DoubleLinkedList<T> extends Lista<T> {
         }
         
     }
+
+    public boolean remove(T value) {
+        if (this.firstNode == null) {
+            return false;
+        }
+
+        LinkedNode<T> current = (LinkedNode<T>) this.firstNode;
+
+        while (current != null) {
+
+            if (current.getValue().equals(value)) { 
+                LinkedNode<T> prev = current.getPreviousNode();
+                LinkedNode<T> next = (LinkedNode<T>) current.getNextNode();
+
+                if (prev == null) {
+                    this.setFirstNode(next);
+                    if (next != null) {
+                        next.setPreviousNode(null);
+                    } else { 
+                        this.setLastNode(null);
+                    }
+                } else if (next == null) { 
+                    prev.setNextNode(null);
+                    this.setLastNode(prev);
+                } else {
+                    prev.setNextNode(next);
+                    next.setPreviousNode(prev);
+                }
+                
+                return true; 
+            }
+            current = (LinkedNode<T>) current.getNextNode();
+        }
+
+        return false;
+    }
 }

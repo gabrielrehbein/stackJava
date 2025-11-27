@@ -26,22 +26,18 @@ public class Lista<T> {
     }
 
     public void showAllElements(){
-        
-        if (this.firstNode == null){
-            System.out.print("");
+        Node<T> tempNode = this.firstNode;
+    
+        if (tempNode == null){
+            System.out.println("[]");
             return;
         }
-
-        Node<T> tempNode = this.firstNode;
-
-
+    
         String strElements = "";
-        strElements += "[" + firstNode.getValue() + "] ";
-        while(tempNode.getNextNode() != null){
-            strElements += "[" + tempNode.getNextNode().getValue() + "] "; 
+        while(tempNode != null){ 
+            strElements += "[" + tempNode.getValue() + "] "; 
             tempNode = tempNode.getNextNode();
         }
-        
         System.out.println(strElements);
     }
 
@@ -55,17 +51,15 @@ public class Lista<T> {
 
     public boolean contains(T value){
         Node<T> tempNode = this.firstNode;
-        boolean contain = false;
-
-        while(tempNode.getNextNode() != null){
-            if (tempNode.getValue() == value){
-                contain = true;
-                break;
+    
+        while(tempNode != null){
+            if (tempNode.getValue().equals(value)){ 
+                return true;
             }
             tempNode = tempNode.getNextNode();
         }
-
-        return contain;
+        
+        return false;
     }
 
 }
