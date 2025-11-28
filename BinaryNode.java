@@ -1,27 +1,27 @@
-public class BinaryNode<T> extends Node<T> {
+public class BinaryNode<Integer> extends Node<Integer> {
 
-    private BinaryNode<T> left;
-    private BinaryNode<T> right;
+    private BinaryNode<Integer> left;
+    private BinaryNode<Integer> right;
 
-    public BinaryNode(T value) {
+    public BinaryNode(Integer value) {
         super(value);
         this.left = null;
         this.right = null;
     }
 
-    public BinaryNode<T> getLeft() {
+    public BinaryNode<Integer> getLeft() {
         return left;
     }
 
-    public void setLeft(BinaryNode<T> left) {
+    public void setLeft(BinaryNode<Integer> left) {
         this.left = left;
     }
 
-    public BinaryNode<T> getRight() {
+    public BinaryNode<Integer> getRight() {
         return right;
     }
 
-    public void setRight(BinaryNode<T> right) {
+    public void setRight(BinaryNode<Integer> right) {
         this.right = right;
     }
 }

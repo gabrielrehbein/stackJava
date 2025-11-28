@@ -57,27 +57,33 @@ public class Main {
                 }
             }
     
-            if (opt == 3){
+            if (opt == 3) {
                 ArvoreBinaria arv = new ArvoreBinaria();
-    
-                ArrayList<Integer> lista = new ArrayList<Integer>();
-
-                lista.add(1);
-                lista.add(6);
-                lista.add(5);
+            
+                ArrayList<Integer> lista = new ArrayList<>();
+            
+                lista.add(9);
+                lista.add(2);
                 lista.add(3);
-                lista.add(4);
-                lista.add(7);
-
+                lista.add(5);
+            
+                System.out.println("Antes Arvore");
+                for (int valor : lista) {
+                    System.out.print(valor + " ");
+                }
+            
+                // Inserir na árvore
                 for (int valor : lista) {
                     arv.inserir(valor);
                 }
-                
-                System.out.println("Arvore");
-                arv.emOrdem();
-
-
-
+            
+                System.out.println("\nDepois Arvore");
+                ArrayList<Integer> listaO = arv.emOrdem();
+                for (int valor : listaO) {
+                    System.out.print(valor + " ");
+                }
+            
+                System.out.println();
             }
             if (opt == 5){
                 Fila fila = new Fila<>();

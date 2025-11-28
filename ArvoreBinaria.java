@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class ArvoreBinaria {
 
@@ -27,16 +28,17 @@ public class ArvoreBinaria {
 
 
 
-    public void emOrdem() {
-        emOrdemRec(raiz);
-        System.out.println();
+    public ArrayList<Integer> emOrdem() {
+        ArrayList<Integer> lista = new ArrayList<>();
+        emOrdemRec(raiz, lista);
+        return lista;
     }
 
-    private void emOrdemRec(BinaryNode<Integer> n) {
+    private void emOrdemRec(BinaryNode<Integer> n, ArrayList<Integer> lista) {
         if (n != null) {
-            emOrdemRec(n.getLeft());
-            System.out.print(n.getValue() + " ");
-            emOrdemRec(n.getRight());
+            emOrdemRec(n.getLeft(), lista);
+            lista.add(n.getValue());
+            emOrdemRec(n.getRight(), lista);
         }
     }
 }
