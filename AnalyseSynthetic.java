@@ -1,7 +1,7 @@
 public class AnalyseSynthetic {
     
     private Stack<Character> stack; 
-    private String validOperations = "*+-/";
+    private final String validOperations = "*+-/";
 
     public AnalyseSynthetic() {
         this.stack = new Stack<>();
@@ -12,76 +12,66 @@ public class AnalyseSynthetic {
     }
 
     public boolean execute(String syntax) {
+
         syntax = syntax.replaceAll("\\s+", "");
         this.stack = new Stack<>();
-        boolean expectOperand = true; 
 
         for (int i = 0; i < syntax.length(); i++) {
+
             char value = syntax.charAt(i);
 
             if (value == '(') {
-                if (!expectOperand) {
-                    System.out.println("ERRO: '(' inesperado. Esperava-se um operador.");
-                    return false; 
-                }
-                this.stack.add(value);
-                expectOperand = true; 
-            } 
-            
-            else if (value == ')') {
-                if (expectOperand) {
-                    System.out.println("ERRO: ')' inesperado após operador ou abertura.");
-                    return false;
-                }
-                
-                if (this.stack.isEmpty()) {
-                    System.out.println("ERRO: ')' encontrado sem correspondente de abertura.");
-                    return false;
-                }
+                stack.add(value);
+                continue;
+            }
 
+            if (value == ')') {
                 try {
-                    this.stack.remove();
+                    stack.remove();
                 } catch (Exception e) {
-                    System.out.println("ERRO: Falha ao remover da pilha.");
+                    System.out.println("Sintaxe incorreta: ')' sem '(' correspondente");
                     return false;
                 }
-                
-                expectOperand = false; 
+                continue;
             }
 
-            else if (isOperator(value)) {
-                if (expectOperand) {
-                    System.out.println("ERRO: Operador '" + value + "' em posição inválida.");
-                    return false;
+            if (isOperator(value)) {
+
+                if (i + 1 < syntax.length() && syntax.charAt(i + 1) == '(') {
+                    try {
+                        stack.remove();
+                    } catch (Exception e) {
+                        System.err.println("ERRO");
+                        return false;
+                    }
                 }
-                expectOperand = true;
+
+                if (i + 1 < syntax.length() && Character.isDigit(syntax.charAt(i + 1))) {
+
+                    try {
+                        stack.remove();
+                    } catch (Exception e) {
+                        System.out.println("Sintaxe incorreta: operador inesperado");
+                        return false;
+                    }
+                }
+
+                continue;
             }
 
-            else if (Character.isDigit(value)) {
+            if (Character.isDigit(value)) {
 
-                if (!expectOperand) {
-                     if (i > 0 && !Character.isDigit(syntax.charAt(i-1))) {
-                         System.out.println("ERRO: Número '" + value + "' inesperado.");
-                         return false;
-                     }
+                if (i + 1 < syntax.length() && isOperator(syntax.charAt(i + 1))) {
+                    char op = syntax.charAt(i + 1);
+                    stack.add(op);
                 }
-                expectOperand = false; 
-            } 
-            
 
-            else {
-                System.out.println("ERRO: Caractere inválido encontrado: " + value);
-                return false;
+                continue;
             }
         }
 
-        if (!this.stack.isEmpty()) {
-            System.out.println("ERRO: Parênteses abertos não foram fechados.");
-            return false;
-        }
-
-        if (expectOperand) {
-            System.out.println("ERRO: Expressão incompleta (terminou com operador).");
+        if (!stack.isEmpty()) {
+            System.out.println("Sintaxe incorreta: operador sem correspondência");
             return false;
         }
 

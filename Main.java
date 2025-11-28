@@ -54,7 +54,7 @@ public class Main {
             }
     
             if (opt == 3){
-                ArvoreBinaria<Integer> arv = new ArvoreBinaria<>();
+                ArvoreBinaria arv = new ArvoreBinaria();
     
             arv.inserir(50);
             arv.inserir(30);
@@ -84,7 +84,7 @@ public class Main {
             
             if (scanner.hasNextInt()) {
                 opcao = scanner.nextInt();
-                scanner.nextLine(); // Consome a quebra de linha
+                scanner.nextLine(); 
             } else {
                 System.out.println("Entrada inválida.");
                 scanner.nextLine();
