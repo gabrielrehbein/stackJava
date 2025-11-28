@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class ArvoreBinaria {
 
@@ -27,21 +25,6 @@ public class ArvoreBinaria {
         return atual;
     }
 
-    public boolean buscar(Integer valor) {
-        return buscarRec(raiz, valor);
-    }
-
-    private boolean buscarRec(BinaryNode<Integer> atual, Integer valor) {
-        if (atual == null) return false;
-
-        if (valor == atual.getValue()) return true;
-
-        if (valor < atual.getValue()) {
-            return buscarRec(atual.getLeft(), valor);
-        } else {
-            return buscarRec(atual.getRight(), valor);
-        }
-    }
 
 
     public void emOrdem() {
