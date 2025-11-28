@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         while(true){
             Scanner scanner1 = new Scanner(System.in);
-            System.out.print("(1) Lista Circular\n(2) Analisador Sintético\n(3) Arvore Binaria\n(4) Lista Duplamente Encadeada\nEscolha: ");
+            System.out.print("(1) Lista Circular\n(2) Analisador Sintético\n(3) Arvore Binaria\n(4) Lista Duplamente Encadeada\n(5) Fila\nEscolha: ");
             int opt = scanner1.nextInt();
     
             if (opt == 1){
@@ -56,23 +58,42 @@ public class Main {
             if (opt == 3){
                 ArvoreBinaria arv = new ArvoreBinaria();
     
-            arv.inserir(50);
-            arv.inserir(30);
-            arv.inserir(70);
-            arv.inserir(20);
-            arv.inserir(40);
-            arv.inserir(60);
-            arv.inserir(80);
-    
-            System.out.println("Arvore");
-            arv.emOrdem();
-    
-            System.out.println("Buscar 40: " + arv.buscar(40));
+                ArrayList<Integer> lista = new ArrayList<Integer>();
+
+                lista.add(1);
+                lista.add(6);
+                lista.add(5);
+                lista.add(3);
+                lista.add(4);
+                lista.add(7);
+
+                for (int valor : lista) {
+                    arv.inserir(valor);
+                }
+                
+                System.out.println("Arvore");
+                arv.emOrdem();
+
+
+
+            }
+            if (opt == 5){
+                Fila fila = new Fila<>();
+                fila.add(1);
+                fila.add(2);
+                fila.add(3);
+                fila.showAllElements();
+                fila.remove();
+                fila.remove();
+                fila.remove();
+                fila.showAllElements();
+
             }
             if (opt == 4){
                 Scanner scanner = new Scanner(System.in);
                 DoubleLinkedList<String> lista = new DoubleLinkedList<>();
                 int opcao;
+            
 
         do {
             System.out.println("\n--- MENU (Lista Dupla) ---");
@@ -123,6 +144,7 @@ public class Main {
                     System.out.println("Opção desconhecida.");
                     break;
             }
+            
         } while (opcao != 0);
             }
     

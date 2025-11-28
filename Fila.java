@@ -13,10 +13,12 @@ public class Fila<T> {
     public T remove(){
         Node<T> tempNode = this.firstNode;
         this.firstNode = this.firstNode.getNextNode();
+        System.out.println("Removeu: " + tempNode.getValue());
         return tempNode.getValue();
     }
 
     public void add(T value){
+        System.out.println("Adicionou: " + value);
         Node<T> node = new Node<T>(value);
 
         if (this.firstNode == null){
@@ -28,7 +30,6 @@ public class Fila<T> {
             tempNode.setNextNode(node);
             this.lastNode = node;
         }
-        System.out.println("Adicionou: " + value);
     }
 
     public void showAllElements(){
