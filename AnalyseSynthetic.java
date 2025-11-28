@@ -29,7 +29,7 @@ public class AnalyseSynthetic {
                 try {
                     stack.remove();
                 } catch (Exception e) {
-                    System.out.println("Sintaxe incorreta: ')' sem '(' correspondente");
+                    System.out.println("Sintaxe incorreta");
                     return false;
                 }
                 continue;
@@ -41,7 +41,7 @@ public class AnalyseSynthetic {
                     try {
                         stack.remove();
                     } catch (Exception e) {
-                        System.err.println("ERRO");
+                        System.out.println("Sintaxe incorreta");
                         return false;
                     }
                 }
@@ -51,7 +51,7 @@ public class AnalyseSynthetic {
                     try {
                         stack.remove();
                     } catch (Exception e) {
-                        System.out.println("Sintaxe incorreta: operador inesperado");
+                        System.out.println("Sintaxe incorreta");
                         return false;
                     }
                 }
@@ -71,7 +71,7 @@ public class AnalyseSynthetic {
         }
 
         if (!stack.isEmpty()) {
-            System.out.println("Sintaxe incorreta: operador sem correspondência");
+            System.out.println("Sintaxe incorreta");
             return false;
         }
 

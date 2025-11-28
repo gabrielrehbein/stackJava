@@ -43,11 +43,13 @@ public class Main {
             }
     
             if (opt == 2){
-                while (true){
+                String syntax = "";
+                while (!syntax.equals("q")){
     
                     Scanner scanner = new Scanner(System.in);
                     System.out.print("Digite uma expressão: ");
-                    String syntax = scanner.next();
+                    syntax = scanner.next();
+
         
                     AnalyseSynthetic analyseSynthetic = new AnalyseSynthetic();
             
